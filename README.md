@@ -2,7 +2,36 @@
 
 A FastAPI + MongoDB service for managing employee attendance logs, manual regularizations, department analytics, and late leaderboards.
 
+## 🚀 Quick Links & API Navigation
+
+When running locally (`uvicorn app.main:app --port 8000`):
+
+- **Interactive API Documentation (Swagger UI)**: `http://localhost:8000/docs`
+- **ReDoc Documentation**: `http://localhost:8000/redoc`
+- **Health Check Endpoint**: `http://localhost:8000/health`
+- **Root Landing Endpoint**: `http://localhost:8000/`
+
+### 📋 Main API Endpoints Matrix
+
+| Category | Endpoint | Method | Description |
+|---|---|---|---|
+| **Health** | `/health` | GET | Database health ping check (returns 200 or 503) |
+| **Employees** | `/employees` | POST | Register new employee (201 Created) |
+| | `/employees` | GET | List/search employees with pagination |
+| **Attendance** | `/attendance/punch-in` | POST | Employee punch-in |
+| | `/attendance/punch-out` | POST | Employee punch-out |
+| | `/attendance` | GET | List/filter attendance records |
+| | `/attendance/{emp_code}/{date}` | PATCH | Regularize / edit attendance record |
+| **Analytics** | `/analytics/employees/{emp_code}/monthly` | GET | Employee monthly attendance analytics |
+| | `/analytics/departments/summary` | GET | Department monthly summary |
+| | `/analytics/leaderboard/late` | GET | Late leaderboard ranking |
+| | `/analytics/departments/{department}/trend` | GET | Daily department attendance trend |
+| **Admin** | `/admin/explain/{endpoint}` | GET | Execution stats explain query (IXSCAN verification) |
+
+---
+
 ## Local Setup & Running
+
 
 1. **Environment Setup**:
    Create a `.env` file from `.env.example`:
