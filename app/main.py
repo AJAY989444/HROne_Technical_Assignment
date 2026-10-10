@@ -305,8 +305,20 @@ class AttendancePatchIn(BaseModel):
 # Endpoints Implementation
 # --------------------------------------------------------------------------- #
 
+@app.get("/")
+def root():
+    return {
+        "title": "Employee Attendance & Analytics API",
+        "docs": "/docs",
+        "health": "/health",
+        "employees": "/employees",
+        "attendance": "/attendance"
+    }
+
+
 @app.get("/health")
 def health():
+
     try:
         db.command("ping")
         return {"status": "ok"}
